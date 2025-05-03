@@ -1,0 +1,431 @@
+/* 全体のスタイル */
+body {
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* 最小限の高さ: ビューポートの高さ */
+}
+
+/* 主領域のスタイル */
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* タイトル入力欄のスタイル */
+#title-input {
+    width: 100%;
+    max-width: 100%;
+    margin: 10px auto 20px auto; /* 上下マージン、左右中央寄せ */
+    padding: 10px;
+    border: none; /* ボーダーを削除 */
+    border-bottom: 2px solid #3498db; /* 下線を追加 */
+    font-size: 24px; /* 大きめのフォントサイズ */
+    font-weight: bold; /* 太字にする */
+    box-sizing: border-box;
+    display: block;
+    text-align: center; /* テキストを中央揃え */
+    color: #333;
+    background-color: #fff; /* 背景色をbodyと同じにする */
+    grid-column: 2;
+}
+
+#title-input:focus {
+    outline: none; /* フォーカス時のアウトラインを削除 */
+    border-bottom: 2px solid #4CAF50; /* フォーカス時に緑色の下線を表示 */
+}
+
+/* テキストエリアのスタイル */
+#editor {
+    align-self: center;
+    width: 80vw; /* 幅を調整 */
+    height: 70vh;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+#editor:focus {
+    outline: none;
+    border: 1px solid #007BFF;
+}
+
+/* スクロールバーのスタイル（CSS） */
+#editor::-webkit-scrollbar {
+    width: 3px; /* スクロールバーの幅 */
+}
+
+#editor::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* トラックの色 */
+}
+
+#editor::-webkit-scrollbar-thumb {
+    background-color: #888; /* サム（つまみ）の色 */
+    border-radius: 4px; /* 角の丸み */
+}
+
+#editor::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* ホバー時のサムの色 */
+}
+
+
+/* 保存ボタンのスタイル */
+#saveButton {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* 下マージンを追加 */
+    grid-column: 2;
+}
+
+#saveButton:hover {
+    background-color: #45a049;
+}
+
+#newButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* 下マージンを追加 */
+    grid-column: 2;
+}
+
+#newButton:hover {
+    background-color: #0056b3;
+}
+
+#button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adjust the spacing as needed */
+    margin-bottom: 20px;
+    grid-column: 2;
+}
+
+/* メッセージ表示エリアのスタイル */
+#message {
+    position: fixed; /* 画面に対して固定 */
+    bottom: 20px; /* 下からの距離 */
+    right: 20px; /* 右からの距離 */
+    transform: translateX(0%); /* 中央揃えのための調整 */
+    left: auto;
+    top: auto;
+    background-color: #333;
+    color: whitesmoke;
+    font-size: 16px;
+    margin-bottom: 20px; /* 下マージンを追加 */
+    text-align: center; /* テキストを中央揃えにする */
+    width: 90%; /* 幅を調整 */
+    max-width: 400px; /* 最大幅を設定 */
+}
+/* エラーメッセージのスタイル */
+.error-message {
+    color: red;
+}
+
+/* ローディングアニメーションのスタイル */
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto; /* 中央に配置 */
+    display: none; /* 最初は非表示 */
+    grid-column: 2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.date-display {
+    font-size: 12px;
+    color: #666;
+    margin-left: auto; /* 日付を右端に寄せる */
+}
+
+/* ポップアップ通知のスタイル */
+.notification {
+    position: fixed; /* 画面に対して固定 */
+    top: 20px; /* 上からの距離 */
+    left: 50%; /* 水平方向中央 */
+    transform: translateX(-50%); /* 中央揃えのための調整 */
+    background-color: #FFF; /* 背景色 */
+    color: green; /* 文字色 */
+    padding: 10px 20px; /* パディング */
+    border-radius: 5px; /* 角丸 */
+    z-index: -1; /* 他の要素より背面に表示 */
+    opacity: 0; /* 表示状態 */
+    pointer-events: auto; /* 最初はクリック可能 */
+    transition: opacity 0.5s ease-in-out; /* トランジション */
+}
+
+.notification.hidden {
+    opacity: 0; /* 非表示 */
+    pointer-events: none; /* クリック不可 */
+}
+
+.notification.error {
+    background-color: #dc3545; /* エラー時の背景色 */
+}
+
+/* メニューのスタイル */
+.menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 0px 20px 30px 20px;
+    z-index: 2;
+    /* transition: transform 0.3s ease-in-out; */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#title-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+#title-list li {
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    display: flex; /* Flexbox レイアウトを使用 */
+    justify-content: space-between; /* タイトルと日時を左右に配置 */
+    align-items: center; /* 垂直方向に中央揃え */
+}
+#title-list li:hover {
+    background-color: #ddd;
+}
+
+/* delete button styling */
+.delete-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    margin: 4px;
+    padding: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-button:hover {
+    background-color: #da190b;
+}
+
+/* 自動保存のスタイル */
+.auto-save-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.auto-save-container input[type="checkbox"] {
+    display: none;
+}
+
+.auto-save-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.auto-save-label svg {
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.auto-save-label span {
+    font-size: 14px;
+}
+
+#autoSaveFlag:checked + .auto-save-label {
+    color: #4CAF50;
+}
+
+#autoSaveFlag:checked + .auto-save-label svg {
+    transform: rotate(360deg);
+}
+
+/* 暗号化キーメッセージのスタイル */
+.key-message {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.key-message p {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.key-display {
+    background-color: #f5f5f5;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.key-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-family: monospace;
+}
+
+.copy-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-button:hover {
+    background-color: #45a049;
+}
+
+.copy-text {
+    transition: color 0.3s ease;
+}
+
+.submit-button {
+    padding: 8px 12px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0b7dda;
+}
+
+.key-message .error {
+    color: #dc3545;
+}
+
+/* 🔑生成メッセージ */
+
+.generate-key-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+.generate-key-overlay.hidden {
+    display: none;
+}
+
+#generateKeyMessage.key-message {
+    z-index: 10000;
+    min-width: 320px;
+    max-width: 90vw;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.2);
+}
+
+
+#generate-key-message-button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#generate-key-message-button-container > button {
+    margin: auto 10px auto;
+}
+
+
+
+#privateKey {
+    width: 15%;
+    max-width: 15%;
+    margin: 0 0 20px;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #007BFF;
+    font-size: 18px;
+    border-radius: 5px 5px 0 0;
+    background: #f9f9f9;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    display: block;
+    text-align: center;
+}
+
+#privateKey:focus {
+    border-bottom: 2px solid #4CAF50;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(76,175,80,0.08);
+}

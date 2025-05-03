@@ -1,0 +1,49 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main-content">
+        <input type="text" id="title-input" placeholder="タイトルを入力してください">
+        <textarea id="editor"></textarea>
+        <div id="button-container">
+            <button id="newButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FfFfFf"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg></button>
+            <button id="saveButton"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FfFfFf"><path d="M840-680v480q0 33-23.5 56.5T760-120H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h480l160 160Zm-80 34L646-760H200v560h560v-446ZM480-240q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM240-560h360v-160H240v160Zm-40-86v446-560 114Z"/></svg></button>
+            <div class="auto-save-container">
+                <input type="checkbox" id="autoSaveFlag">
+                <label for="autoSaveFlag" class="auto-save-label">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                        <path d="M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77t76.5 114T840-480q0 75-28.5 140.5t-77 114-114 76.5T480-120Z"/>
+                    </svg>
+                    <span>自動保存</span>
+                </label>
+            </div>
+            <input type="text" id="privateKey" placeholder="🔑", autocomplete="off">
+        </div>
+        <div id="message" class="notification"></div>
+        <div class="loader" id="loading"></div>
+    </div>
+    <!-- <div class="menu"> -->
+        <!-- <button class="close-button">x</button> -->
+    <ul id="title-list"></ul>
+    <!-- </div> -->
+    <div id="generateKeyOverlay" class="generate-key-overlay hidden">
+        <div id="generateKeyMessage" class="key-message">
+            <p>暗号化キーが生成されました。このキーは大切に保管し、PRIVATE_KEY欄に入力してください。</p>
+            <div class="key-display"></div>
+            <div id="generate-key-message-button-container">
+                <button class="copy-button" title="キーをコピー">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    <span class="copy-text">キーをコピー</span>
+                </button>
+                <button class="submit-button">確認しました</button>    
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>
+    <script src="script.js"></script>
+</body>
+</html>
